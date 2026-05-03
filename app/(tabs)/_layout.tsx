@@ -3,19 +3,23 @@ import { Tabs } from 'expo-router';
 
 export default function TabLayout() {
   return (
-
-
-    <Tabs screenOptions={{ headerShown: false }}>
-      <Tabs.Screen
-        name="account"
-        options={{
-          title: 'Account',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="person" size={size} color={color} />
-          ),
-        }}
-      />
-      
+    <Tabs
+      screenOptions={{
+        headerShown: false,
+        tabBarActiveTintColor: '#245C52',
+        tabBarInactiveTintColor: '#6E7B76',
+        tabBarHideOnKeyboard: true,
+        tabBarLabelStyle: {
+          fontSize: 12,
+          fontWeight: '600',
+        },
+        tabBarStyle: {
+          height: 72,
+          paddingTop: 8,
+          paddingBottom: 8,
+        },
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
@@ -41,31 +45,30 @@ export default function TabLayout() {
         options={{
           title: 'Activities',
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="color-palette" size={size} color={color} />
+            <Ionicons name="people" size={size} color={color} />
           ),
         }}
       />
 
       <Tabs.Screen
-        name="meals"
+        name="resources"
         options={{
-          title: 'Meals',
+          title: 'Resources',
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="restaurant" size={size} color={color} />
+            <Ionicons name="heart-circle" size={size} color={color} />
           ),
         }}
       />
 
       <Tabs.Screen
-        name="contact"
+        name="account"
         options={{
-          title: 'Contact',
+          title: 'Account',
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="call" size={size} color={color} />
+            <Ionicons name="person" size={size} color={color} />
           ),
         }}
       />
-
     </Tabs>
   );
 }
