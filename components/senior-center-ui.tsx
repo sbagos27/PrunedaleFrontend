@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react';
 import {
+  Linking,
+  Pressable,
   ScrollView,
   StyleSheet,
   Text,
@@ -27,6 +29,11 @@ type SectionCardProps = {
 
 type TagProps = {
   label: string;
+};
+
+type ActionLinkProps = {
+  label: string;
+  href: string;
 };
 
 export function ScreenShell({
@@ -129,6 +136,29 @@ export function Tag({ label }: TagProps) {
   );
 }
 
+export function ActionLink({ label, href }: ActionLinkProps) {
+  const backgroundColor = useThemeColor(
+    { light: '#E8F1EE', dark: '#224139' },
+    'background'
+  );
+  const textColor = useThemeColor(
+    { light: '#245C52', dark: '#E8F1EE' },
+    'text'
+  );
+
+  return (
+    <Pressable
+      accessibilityRole="link"
+      onPress={() => {
+        void Linking.openURL(href);
+      }}
+      style={[styles.actionLink, { backgroundColor }]}
+    >
+      <Text style={[styles.actionLinkText, { color: textColor }]}>{label}</Text>
+    </Pressable>
+  );
+}
+
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
@@ -191,6 +221,16 @@ const styles = StyleSheet.create({
   },
   tagText: {
     fontSize: 13,
+    fontWeight: '700',
+  },
+  actionLink: {
+    borderRadius: 16,
+    paddingHorizontal: 16,
+    paddingVertical: 14,
+  },
+  actionLinkText: {
+    fontSize: 16,
+    lineHeight: 22,
     fontWeight: '700',
   },
 });
